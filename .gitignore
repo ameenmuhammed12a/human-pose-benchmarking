@@ -15,6 +15,5 @@ models/
 *.pth
 *.task
 
-results/
 results_mac/
 *.zip
