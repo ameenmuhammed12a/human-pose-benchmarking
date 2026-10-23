@@ -1,0 +1,85 @@
+# =============================================================================
+#  Benchmarking Human Pose Estimation Models
+#  MSc AI Project Block 6 -- University of Bedfordshire, AY 2025/26
+#
+#  Install with:      pip install -r requirements.txt
+#  Everything below runs on CPU; no CUDA build is required.
+# =============================================================================
+
+# ---- Core scientific stack --------------------------------------------------
+numpy>=1.24,<3
+pandas>=2.0
+scipy>=1.10
+matplotlib>=3.7
+
+# ---- Image I/O --------------------------------------------------------------
+opencv-python>=4.8
+
+# ---- Notebook ---------------------------------------------------------------
+jupyterlab>=4.0
+notebook>=7.0
+nbformat>=5.9
+nbclient>=0.9
+ipython>=8.0
+
+# ---- YOLO Pose (Ultralytics YOLOv8-pose + YOLO26-pose, COCO-17 output) -------
+# YOLO26 needs ultralytics 8.4 or newer -- older versions fail to load
+# yolo26n-pose.pt ("Can't get attribute 'Pose26'") and the model is skipped.
+# Pulls in torch/torchvision. The CPU-only wheels are sufficient:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+ultralytics>=8.4
+torch>=2.0
+torchvision>=0.15
+
+# ---- MediaPipe Pose (BlazePose, 33 landmarks) -------------------------------
+# The project brief specifies mediapipe==0.10.14 for the legacy
+# `mp.solutions.pose` API, which bundles its models and works offline.
+# That release only publishes wheels for CPython 3.8-3.12. On Python 3.13+
+# it cannot be installed, and mediapipe 0.10.30+ no longer exposes
+# `mp.solutions` at all -- only the newer `mediapipe.tasks` API.
+#
+# The notebook's MediaPipeWrapper handles BOTH: it tries `mp.solutions.pose`
+# first and falls back to `mediapipe.tasks.PoseLandmarker`. Both produce the
+# same 33-landmark skeleton, so results are unaffected either way.
+#
+#   Python 3.8 - 3.12  ->  uncomment the pinned line, get the legacy API
+#   Python 3.13+       ->  keep the unpinned line, get the Tasks API
+#
+# mediapipe==0.10.14
+mediapipe>=0.10
+
+# ---- OpenPose ---------------------------------------------------------------
+# NOT pip-installable. OpenPose is a C++ project and must be built separately
+# with BUILD_PYTHON=ON, which produces the `pyopenpose` module:
+#     https://github.com/CMU-Perceptual-Computing-Lab/openpose
+# A CPU_ONLY build is sufficient. After building, download the BODY_25 model into
+# <openpose>/models/ and set OPENPOSE_ROOT in the notebook's configuration cell.
+#
+# No build is needed to run this benchmark. OpenPoseWrapper falls back to CMU's
+# OWN released COCO-18 weights (pose_iter_440000) executed through an equivalent
+# PyTorch graph -- same network, same part affinity fields, same limb grouping,
+# different executor. This is the path the committed results use. Fetch the
+# weights (209 MB, into models/openpose_body_coco18.pth) with:
+#     python tools/setup_data.py --only openpose
+# It needs nothing beyond torch and scipy, both already required above.
+# If neither a build nor the weights are present, the wrapper reports itself
+# unavailable and is skipped without error -- the rest of the benchmark runs.
+
+# ---- Data acquisition helper (only needed to re-fetch the datasets) ----------
+# Used by tools/ to download CrowdPose from Google Drive.
+gdown>=5.0
+
+# =============================================================================
+#  MODEL FILES (downloaded once, then used offline; kept in models/)
+#    yolov8n-pose.pt
+#      https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8n-pose.pt
+#    yolo26n-pose.pt
+#      https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n-pose.pt
+#    yolo11n-pose.pt                    (only used by tools/run_yolo_generations.py)
+#      https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11n-pose.pt
+#    pose_landmarker_full.task          (only needed on the Tasks-API path)
+#      https://storage.googleapis.com/mediapipe-models/pose_landmarker/
+#        pose_landmarker_full/float16/latest/pose_landmarker_full.task
+#    openpose_body_coco18.pth           (CMU COCO-18 weights, PyTorch backend)
+#      https://huggingface.co/lllyasviel/Annotators/resolve/main/body_pose_model.pth
+# =============================================================================
