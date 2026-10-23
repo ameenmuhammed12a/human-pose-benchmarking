@@ -1,0 +1,13 @@
+common joint,CrowdPose-14,JRDB-17,COCO-17 (YOLO),MediaPipe-33,BODY_25 (OpenPose)
+left_shoulder, 0  left_shoulder, 5  left shoulder, 5  left_shoulder,11  left_shoulder, 5  LShoulder
+right_shoulder, 1  right_shoulder, 3  right shoulder, 6  right_shoulder,12  right_shoulder, 2  RShoulder
+left_elbow, 2  left_elbow, 7  left elbow, 7  left_elbow,13  left_elbow, 6  LElbow
+right_elbow, 3  right_elbow, 6  right elbow, 8  right_elbow,14  right_elbow, 3  RElbow
+left_wrist, 4  left_wrist,12  left wrist, 9  left_wrist,15  left_wrist, 7  LWrist
+right_wrist, 5  right_wrist, 9  right wrist,10  right_wrist,16  right_wrist, 4  RWrist
+left_hip, 6  left_hip,11  left hip,11  left_hip,23  left_hip,12  LHip
+right_hip, 7  right_hip,10  right hip,12  right_hip,24  right_hip, 9  RHip
+left_knee, 8  left_knee,14  left knee,13  left_knee,25  left_knee,13  LKnee
+right_knee, 9  right_knee,13  right knee,14  right_knee,26  right_knee,10  RKnee
+left_ankle,10  left_ankle,16  left foot,15  left_ankle,27  left_ankle,14  LAnkle
+right_ankle,11  right_ankle,15  right foot,16  right_ankle,28  right_ankle,11  RAnkle

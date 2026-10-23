@@ -1,0 +1,15 @@
+dataset,CrowdPose,CrowdPose,CrowdPose,CrowdPose,JRDB-Pose,JRDB-Pose,JRDB-Pose,JRDB-Pose
+model,MediaPipe-Pose,OpenPose,YOLO26-pose,YOLOv8-pose,MediaPipe-Pose,OpenPose,YOLO26-pose,YOLOv8-pose
+joint_name,,,,,,,,
+left_shoulder,67.9,82.8,91.2,90.3,65.9,71.7,80.9,80.9
+right_shoulder,68.3,82.7,91.2,90.5,63.3,73.9,79.8,80.7
+left_elbow,58.0,70.2,86.2,87.4,47.4,53.5,72.8,75.4
+right_elbow,59.0,72.6,86.3,86.2,46.3,55.0,69.3,70.9
+left_wrist,55.5,62.1,80.2,81.8,31.5,40.7,62.0,66.1
+right_wrist,57.0,63.9,81.0,80.2,40.6,48.0,61.7,62.4
+left_hip,66.1,72.8,90.5,89.4,67.8,74.8,88.0,86.5
+right_hip,66.2,72.3,89.7,89.4,64.8,75.6,87.4,87.4
+left_knee,53.5,65.6,82.4,81.4,55.9,68.0,79.8,79.8
+right_knee,54.0,65.3,84.2,82.3,54.3,68.7,80.4,78.1
+left_ankle,54.5,63.0,80.2,77.6,52.0,61.3,71.9,75.4
+right_ankle,54.2,60.8,80.4,78.3,50.4,56.3,68.3,67.6
